@@ -9,7 +9,7 @@ function permutationSort(a) {
         return counter;
     }
     else if (a.length == 2) {
-        [a[0], a[1]] = [a[1], a[0]];
+        a.reverse();
         counter += 1;
         return counter;
     }
