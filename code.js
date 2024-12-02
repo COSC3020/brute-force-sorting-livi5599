@@ -8,6 +8,11 @@ function permutationSort(a) {
     else if (isSorted(a)) {
         return counter;
     }
+    else if (a.length == 2) {
+        [a[0], a[1]] = [a[1], a[0]];
+        counter++;
+        return counter;
+    }
     else {
         var pillarArr = [];
         while (pillarArr.length < a.length) {
