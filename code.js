@@ -16,6 +16,7 @@ function permutationSort(a) {
         }
         else {
             return counter;
+        }
     }
     else {
         var pillarArr = [];
