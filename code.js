@@ -9,9 +9,11 @@ function permutationSort(a) {
         return counter;
     }
     else if (a.length == 2) {
-        a.reverse();
-        counter += 1;
-        return counter;
+        if (!isSorted(a)) {
+            a.reverse();
+            counter += 1;
+            return counter;
+        }
     }
     else {
         var pillarArr = [];
@@ -48,10 +50,12 @@ function permutationSort(a) {
 
 function isSorted(arr) {
     var sorted = true;
-    for (i = 0; i < arr.length; i++) {
-        if (arr[i] > arr[i+1]) {
-            sorted = false;
-            return sorted;
+    if (arr.length > 1) {
+        for (i = 0; i < arr.length - 1; i++) {
+            if (arr[i] > arr[i+1]) {
+                sorted = false;
+                return sorted;
+            }
         }
     }
     return sorted;
