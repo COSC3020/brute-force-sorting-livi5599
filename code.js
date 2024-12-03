@@ -8,13 +8,15 @@ function permutationSort(a) {
     else if (isSorted(a)) {
         return counter;
     }
-    // else if (a.length == 2) {
-    //     if (!isSorted(a)) {
-    //         a.reverse();
-    //         counter += 1;
-    //         return counter;
-    //     }
-    // }
+    else if (a.length == 2) {
+        if (!isSorted(a)) {
+            a.reverse();
+            counter += 1;
+            return counter;
+        }
+        else {
+            return counter;
+    }
     else {
         var pillarArr = [];
         while (pillarArr.length < a.length) {
