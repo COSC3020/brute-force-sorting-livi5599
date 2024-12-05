@@ -37,7 +37,14 @@ function permutationSort(a) {
                 var movingElem = a[1];
                 for (var i = a.indexOf(movingElem) + 1; i < a.length; i++) {
                     [a[a.indexOf(movingElem)], a[i]] = [a[i], a[a.indexOf(movingElem)]];
-                    if (!permutations.includes(a)) {
+                    let found = false;
+                    for (j = 0; j < permutations.length; j++) {
+                        if (permutations[j] == a) {
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found) {
                         counter += 1;
                         permutations.push([...a]);
                     }
