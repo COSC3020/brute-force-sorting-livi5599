@@ -101,6 +101,8 @@ function permutationSort(a) {
 
             }
             if (isSorted(allPerms[i])){
+                a.length = 0;
+                Array.prototype.push.apply(a, allPerms[i]);
                 return counter;
             }
         }
@@ -118,10 +120,6 @@ function getAllPermutations(arr) {
     
     if (arr.length === 1) {
         return [arr];
-    }
-
-    if (arr.length === 2) {
-        return [arr, [arr[1], arr[0]]];
     }
 
     var results = [];
