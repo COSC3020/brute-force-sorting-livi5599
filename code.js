@@ -23,7 +23,14 @@ function permutationSort(a) {
         while (pillarArr.length < a.length) {
             for (i = 0; i < a.length; i++) {
                 var pillar = a[i];
-                if (!pillarArr.includes(pillar)) {
+                let paFound = false;
+                for (j = 0; j < pillarArr.length; j++) {
+                    if (pillarArr[j] == pillar) {
+                        paFound = true;
+                        break;
+                    }
+                }
+                if (!paFound) {
                     pillarArr.push(pillar);
                     var pillarIndex = a.indexOf(pillar);
                     if (pillarIndex != 0) {
@@ -37,14 +44,14 @@ function permutationSort(a) {
                 var movingElem = a[1];
                 for (var i = a.indexOf(movingElem) + 1; i < a.length; i++) {
                     [a[a.indexOf(movingElem)], a[i]] = [a[i], a[a.indexOf(movingElem)]];
-                    let found = false;
+                    let permFound = false;
                     for (j = 0; j < permutations.length; j++) {
                         if (permutations[j] == a) {
-                            found = true;
+                            permFound = true;
                             break;
                         }
                     }
-                    if (!found) {
+                    if (!permFound) {
                         counter += 1;
                         permutations.push([...a]);
                     }
