@@ -46,7 +46,7 @@ function permutationSort(a) {
                     [a[a.indexOf(movingElem)], a[i]] = [a[i], a[a.indexOf(movingElem)]];
                     let permFound = false;
                     for (j = 0; j < permutations.length; j++) {
-                        if (permutations[j] == a) {
+                        if (JSON.stringify(permutations[j]) === JSON.stringify(a)) {
                             permFound = true;
                             break;
                         }
