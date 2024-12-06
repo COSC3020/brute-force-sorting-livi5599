@@ -14,6 +14,8 @@ function permutationSort(a) {
             a.reverse();
             counter += 1;
             return counter;
+        } else {
+            return counter;
         }
         
     
@@ -133,16 +135,15 @@ function getAllPermutations(arr) {
 }
 
 function isSorted(arr) {
-    var sorted = true;
-    if (arr.length > 1) {
-        for (i = 0; i < arr.length - 1; i++) {
-            if (arr[i] > arr[i+1]) {
-                sorted = false;
-                return sorted;
-            }
+    // var sorted = true;
+    // if (arr.length > 1) {
+    for (i = 0; i < arr.length - 1; i++) {
+        if (arr[i] > arr[i+1]) {
+                return false;
+                
         }
     }
-    return sorted;
+    return true;
 }
 
 let a = [4, -2, 9, 0, 1];
