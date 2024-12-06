@@ -120,6 +120,10 @@ function getAllPermutations(arr) {
         return [arr];
     }
 
+    if (arr.length === 2) {
+        return [arr, [arr[1], arr[0]]];
+    }
+
     var results = [];
 
     for (var i = 0; i < arr.length; i++) {
