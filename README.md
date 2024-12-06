@@ -20,3 +20,9 @@ randomly without memory instead of systematically trying them?
 
 Describe your reasoning and the conclusion you've come to. Your reasoning is the
 most important part. Add your answer to this markdown file.
+
+-----
+
+I worked on this assignment with Cole (Nathanael), Ashlyn, and Megan, and I recieved help from Ali and ChatGPT.  Cole, Ashlyn, Megan and I discussed the logic of the algorithm (like using a pillar element and moving all other elements to generate the different permutations).  Ali first helped me by giving me the idea of storing the different permutations in an array of lists in order to determine when to increase the counter.  He then helped me adjust my code so that the test would pass.  I first wrote code that has the else statement that is commented out.  When testing it on my own, it worked fine, but when I tried committing it, the test would run infinitely.  So, Ali helped me figure out what needed to be changed so that the test would pass.  Regarding ChatGPT, I used it to help me figure out why certain sections of my code weren't working correctly.  For example, I asked it why the pillar element wasn't being swapped correctly so that it would be moved to the beginning of the array.  I originally used the line [a[0], a[a.indexOf(pillar)]] = [a[a.indexOf(pillar)], a[0]], and ChatGPT mentioned that I should use the variable pillarIndex to store the index and use that to swap instead of trying to swap using a.indexOf(pillar).
+
+I certify that I have listed all sources used to complete this exercise, including the use of any Large Language Models.  All of the work is my own, except where stated otherwise.  I am aware that plagiarism carries severe penalties and that if plagiarism is suspected, charges may be filed against me without prior notice.
