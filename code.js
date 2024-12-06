@@ -15,10 +15,8 @@ function permutationSort(a) {
             counter += 1;
             return counter;
         }
-        else {
-            return counter;
-        }
-    }
+        
+    
     // else {
     //     var pillarArr = [];
     //     while (pillarArr.length < a.length) {
@@ -91,7 +89,23 @@ function permutationSort(a) {
 
 
     // }
-    getAllPermutations(a);
+    
+    } else {
+        var allPerms = getAllPermutations(a);
+
+        for (var i=0; i< allPerms.length; i++){
+            if (i!=0) {
+                counter++;
+
+            }
+            if (isSorted(allPerms[i])){
+                return counter;
+            }
+        }
+
+        return counter;
+    }
+    
 
 }
 
