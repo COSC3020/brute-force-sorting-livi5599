@@ -2,6 +2,7 @@ function permutationSort(a) {
     var counter = 1;
     var permutations = [];
     permutations.push([...a]);
+    console.log("permutations = ", permutations);
     if (a.length == 0 || a.length == 1) {
         return counter;
     }
@@ -18,51 +19,103 @@ function permutationSort(a) {
             return counter;
         }
     }
-    else {
-        var pillarArr = [];
-        while (pillarArr.length < a.length) {
-            for (i = 0; i < a.length; i++) {
-                var pillar = a[i];
-                let paFound = false;
-                for (j = 0; j < pillarArr.length; j++) {
-                    if (pillarArr[j] == pillar) {
-                        paFound = true;
-                        break;
-                    }
-                }
-                if (!paFound) {
-                    pillarArr.push(pillar);
-                    var pillarIndex = a.indexOf(pillar);
-                    if (pillarIndex != 0) {
-                        [a[0], a[pillarIndex]] = [a[pillarIndex], a[0]];
-                    }
-                    break;
-                }
-            }
-            var numMovingElems = 0;
-            while (numMovingElems < a.length - 1) {
-                var movingElem = a[1];
-                for (var i = a.indexOf(movingElem) + 1; i < a.length; i++) {
-                    [a[a.indexOf(movingElem)], a[i]] = [a[i], a[a.indexOf(movingElem)]];
-                    let permFound = false;
-                    for (j = 0; j < permutations.length; j++) {
-                        if (JSON.stringify(permutations[j]) === JSON.stringify(a)) {
-                            permFound = true;
-                            break;
-                        }
-                    }
-                    if (!permFound) {
-                        counter += 1;
-                        permutations.push([...a]);
-                    }
-                    if (isSorted(a)) {
-                        return counter;
-                    }
-                }
-                numMovingElems += 1;
-            }
+    // else {
+    //     var pillarArr = [];
+    //     while (pillarArr.length < a.length) {
+    //         for (i = 0; i < a.length; i++) {
+    //             var pillar = a[i];
+    //             console.log("pillar = ", pillar);
+    //             let paFound = false;
+    //             for (j = 0; j < pillarArr.length; j++) {
+    //                 if (pillarArr[j] == pillar) {
+    //                     paFound = true;
+    //                     break;
+    //                 }
+    //             }
+    //             if (!paFound) {
+    //                 pillarArr.push(pillar);
+    //                 var pillarIndex = a.indexOf(pillar);
+    //                 console.log("pillarIndex = ", pillarIndex);
+    //                 if (pillarIndex != 0) {
+    //                     [a[0], a[pillarIndex]] = [a[pillarIndex], a[0]];
+    //                     console.log("a adjusted for pillar = ", a);
+    //                 }
+    //                 break;
+    //             }
+    //             // if (!pillarArr.includes(pillar)) {
+    //             //     pillarArr.push(pillar);
+    //             //     var pillarIndex = a.indexOf(pillar);
+    //             //     console.log("pillarIndex = ", pillarIndex);
+    //             //     if (pillarIndex != 0) {
+    //             //         [a[0], a[pillarIndex]] = [a[pillarIndex], a[0]];
+    //             //         console.log("a adjusted for pillar = ", a);
+    //             //     }
+    //             //     break;
+    //             // }
+    //         }
+    //         console.log("pillarArr = ", pillarArr);
+    //         var numMovingElems = 0;
+    //         while (numMovingElems < a.length - 1) {
+    //             //don't use set, use array
+    //             //maybe use helper function that generates different permutations
+    //             //to keep track of permutations, use an array of lists
+    //             var movingElem = a[1];
+    //             console.log("movingElem = ", movingElem);
+    //             for (var i = a.indexOf(movingElem) + 1; i < a.length; i++) {
+    //                 console.log("i = ", i);
+    //                 console.log("a.indexOf(movingElem) = ", a.indexOf(movingElem));
+    //                 [a[a.indexOf(movingElem)], a[i]] = [a[i], a[a.indexOf(movingElem)]];
+    //                 console.log(a);
+    //                 let permFound = false;
+    //                 for (j = 0; j < permutations.length; j++) {
+    //                     if (JSON.stringify(permutations[j]) === JSON.stringify(a)) {
+    //                         permFound = true;
+    //                         break;
+    //                     }
+    //                 }
+    //                 if (!permFound) {
+    //                     counter += 1;
+    //                     permutations.push([...a]);
+    //                 }
+    //                 console.log("counter = ", counter);
+    //                 console.log("permutations = ", permutations);
+    //                 if (isSorted(a)) {
+    //                     return counter;
+    //                 }
+    //                 //console.log(a);
+    //             }
+    //             numMovingElems += 1;
+    //             console.log("numMovingElems = ", numMovingElems);
+    //         }
+    //     }
+
+
+    // }
+    getAllPermutations(a);
+
+}
+
+function getAllPermutations(arr) {
+    if (arr.length === 0) {
+        return [[]];
+    }
+    
+    if (arr.length === 1) {
+        return [arr];
+    }
+
+    var results = [];
+
+    for (var i = 0; i < arr.length; i++) {
+        var first = arr[i];
+        var rest = arr.slice(0, i).concat(arr.slice(i + 1));
+
+        var subPerms = getAllPermutations(rest);
+        for (var j = 0; j < subPerms.length; j++) {
+            results.push([first].concat(subPerms[j]));
         }
     }
+    return results;
 }
 
 function isSorted(arr) {
@@ -77,3 +130,7 @@ function isSorted(arr) {
     }
     return sorted;
 }
+
+let a = [4, -2, 9, 0, 1];
+//console.log(isSorted(a));
+console.log(permutationSort(a));
