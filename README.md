@@ -21,7 +21,9 @@ randomly without memory instead of systematically trying them?
 Describe your reasoning and the conclusion you've come to. Your reasoning is the
 most important part. Add your answer to this markdown file.
 
-The runtime complexity of my algorithm is O(n!).  A best case input would be an array that is already sorted, which would have a worst-case runtime of O(n).  A worst case input would be an array that is in reverse order.  I believe the complexity would get worse if I generated permutations randomly without memory, as it would be possible for the algorithm to never return anything, as the same permutation could continue to be generated since there would be no way to keep track of the already generated permutations.  
+The runtime complexity of my algorithm is O(n!).  A best case input would be an array that is already sorted, which would have a worst-case runtime of O(n).  A worst case input would be an array that is in reverse order.  I believe the complexity would get worse if I generated permutations randomly without memory, as it would be possible for the algorithm to never return anything, as the same permutation could continue to be generated since there would be no way to keep track of the already generated permutations.
+
+I added comments to my code stating what I believe the runtime for each line/function is.
 
 -----
 
