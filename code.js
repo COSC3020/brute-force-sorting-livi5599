@@ -1,153 +1,67 @@
-function permutationSort(a) {
-    var counter = 1;
-    var permutations = [];
-    permutations.push([...a]);
-    console.log("permutations = ", permutations);
-    if (a.length == 0 || a.length == 1) {
-        return counter;
+function permutationSort(a) { //O(n!)
+    var counter = 1; //O(1)
+    var permutations = []; //O(1)
+    permutations.push([...a]); //O(n)
+    if (a.length == 0 || a.length == 1) { //O(1)
+        return counter; //O(1)
     }
-    else if (isSorted(a)) {
-        return counter;
+    else if (isSorted(a)) { //O(n)
+        return counter; //O(1)
     }
-    else if (a.length == 2) {
-        if (!isSorted(a)) {
-            a.reverse();
-            counter += 1;
-            return counter;
-        } else {
-            return counter;
+    else if (a.length == 2) { //O(n)
+        if (!isSorted(a)) { //isSorted runtime = O(n) -> O(n) + O(n) = O(n)
+            a.reverse(); //O(n)
+            counter += 1; //O(1)
+            return counter; //O(1)
+        } else { //O(1)
+            return counter; //O(1)
         }
-        
-    
-    // else {
-    //     var pillarArr = [];
-    //     while (pillarArr.length < a.length) {
-    //         for (i = 0; i < a.length; i++) {
-    //             var pillar = a[i];
-    //             console.log("pillar = ", pillar);
-    //             let paFound = false;
-    //             for (j = 0; j < pillarArr.length; j++) {
-    //                 if (pillarArr[j] == pillar) {
-    //                     paFound = true;
-    //                     break;
-    //                 }
-    //             }
-    //             if (!paFound) {
-    //                 pillarArr.push(pillar);
-    //                 var pillarIndex = a.indexOf(pillar);
-    //                 console.log("pillarIndex = ", pillarIndex);
-    //                 if (pillarIndex != 0) {
-    //                     [a[0], a[pillarIndex]] = [a[pillarIndex], a[0]];
-    //                     console.log("a adjusted for pillar = ", a);
-    //                 }
-    //                 break;
-    //             }
-    //             // if (!pillarArr.includes(pillar)) {
-    //             //     pillarArr.push(pillar);
-    //             //     var pillarIndex = a.indexOf(pillar);
-    //             //     console.log("pillarIndex = ", pillarIndex);
-    //             //     if (pillarIndex != 0) {
-    //             //         [a[0], a[pillarIndex]] = [a[pillarIndex], a[0]];
-    //             //         console.log("a adjusted for pillar = ", a);
-    //             //     }
-    //             //     break;
-    //             // }
-    //         }
-    //         console.log("pillarArr = ", pillarArr);
-    //         var numMovingElems = 0;
-    //         while (numMovingElems < a.length - 1) {
-    //             //don't use set, use array
-    //             //maybe use helper function that generates different permutations
-    //             //to keep track of permutations, use an array of lists
-    //             var movingElem = a[1];
-    //             console.log("movingElem = ", movingElem);
-    //             for (var i = a.indexOf(movingElem) + 1; i < a.length; i++) {
-    //                 console.log("i = ", i);
-    //                 console.log("a.indexOf(movingElem) = ", a.indexOf(movingElem));
-    //                 [a[a.indexOf(movingElem)], a[i]] = [a[i], a[a.indexOf(movingElem)]];
-    //                 console.log(a);
-    //                 let permFound = false;
-    //                 for (j = 0; j < permutations.length; j++) {
-    //                     if (JSON.stringify(permutations[j]) === JSON.stringify(a)) {
-    //                         permFound = true;
-    //                         break;
-    //                     }
-    //                 }
-    //                 if (!permFound) {
-    //                     counter += 1;
-    //                     permutations.push([...a]);
-    //                 }
-    //                 console.log("counter = ", counter);
-    //                 console.log("permutations = ", permutations);
-    //                 if (isSorted(a)) {
-    //                     return counter;
-    //                 }
-    //                 //console.log(a);
-    //             }
-    //             numMovingElems += 1;
-    //             console.log("numMovingElems = ", numMovingElems);
-    //         }
-    //     }
+    }
+    else {
+        var allPerms = getAllPermutations(a); //O(n!)
 
-
-    // }
-    
-    } else {
-        var allPerms = getAllPermutations(a);
-
-        for (var i=0; i< allPerms.length; i++){
-            if (i!=0) {
-                counter++;
-
+        for (var i=0; i < allPerms.length; i++){ //O(n!)
+            if (i!=0) { //O(1)
+                counter++; //O(1)
             }
-            if (isSorted(allPerms[i])){
-                a.length = 0;
-                Array.prototype.push.apply(a, allPerms[i]);
-                return counter;
+            if (isSorted(allPerms[i])){ //O(n)
+                a.length = 0; //O(1)
+                Array.prototype.push.apply(a, allPerms[i]); //O(n)
+                return counter; //O(1)
             }
         }
-
-        return counter;
+        return counter; //O(1)
     }
-    
-
 }
 
-function getAllPermutations(arr) {
-    if (arr.length === 0) {
-        return [[]];
+function getAllPermutations(arr) { //O(n!)
+    if (arr.length === 0) { //O(1)
+        return [[]]; //O(1)
     }
     
-    if (arr.length === 1) {
-        return [arr];
+    if (arr.length === 1) { //O(1)
+        return [arr]; //O(1)
     }
 
-    var results = [];
+    var results = []; //O(1)
 
-    for (var i = 0; i < arr.length; i++) {
-        var first = arr[i];
-        var rest = arr.slice(0, i).concat(arr.slice(i + 1));
+    for (var i = 0; i < arr.length; i++) { //runs n times
+        var first = arr[i]; //O(1)
+        var rest = arr.slice(0, i).concat(arr.slice(i + 1)); //O(n^2)
 
-        var subPerms = getAllPermutations(rest);
-        for (var j = 0; j < subPerms.length; j++) {
-            results.push([first].concat(subPerms[j]));
+        var subPerms = getAllPermutations(rest); //O(n^3)
+        for (var j = 0; j < subPerms.length; j++) { //runs (n-1)! times -> O(n!)
+            results.push([first].concat(subPerms[j])); //O(n)
         }
     }
-    return results;
+    return results; //O(1)
 }
 
-function isSorted(arr) {
-    // var sorted = true;
-    // if (arr.length > 1) {
-    for (i = 0; i < arr.length - 1; i++) {
+function isSorted(arr) { //O(n)
+    for (i = 0; i < arr.length - 1; i++) { //O(n)
         if (arr[i] > arr[i+1]) {
-                return false;
-                
+                return false; //O(1)
         }
     }
-    return true;
+    return true; //O(1)
 }
-
-let a = [4, -2, 9, 0, 1];
-//console.log(isSorted(a));
-console.log(permutationSort(a));
